@@ -1,0 +1,9 @@
+c:\users\süleyman\documents\visual studio 2015\Projects\DovizKuru\DovizKuru\bin\Debug\DovizKuru.exe.config
+c:\users\süleyman\documents\visual studio 2015\Projects\DovizKuru\DovizKuru\bin\Debug\DovizKuru.exe
+c:\users\süleyman\documents\visual studio 2015\Projects\DovizKuru\DovizKuru\bin\Debug\DovizKuru.pdb
+c:\users\süleyman\documents\visual studio 2015\Projects\DovizKuru\DovizKuru\obj\Debug\DovizKuru.csprojResolveAssemblyReference.cache
+c:\users\süleyman\documents\visual studio 2015\Projects\DovizKuru\DovizKuru\obj\Debug\DovizKuru.Form1.resources
+c:\users\süleyman\documents\visual studio 2015\Projects\DovizKuru\DovizKuru\obj\Debug\DovizKuru.Properties.Resources.resources
+c:\users\süleyman\documents\visual studio 2015\Projects\DovizKuru\DovizKuru\obj\Debug\DovizKuru.csproj.GenerateResource.Cache
+c:\users\süleyman\documents\visual studio 2015\Projects\DovizKuru\DovizKuru\obj\Debug\DovizKuru.exe
+c:\users\süleyman\documents\visual studio 2015\Projects\DovizKuru\DovizKuru\obj\Debug\DovizKuru.pdb
