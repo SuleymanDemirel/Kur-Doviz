@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,8 +35,8 @@ namespace DovizKuru
             tablo.Columns.Add("BanknoteSelling", typeof(string));
             tablo.Columns.Add("CrossRateUsd", typeof(string));
             tablo.Columns.Add("Unit", typeof(string));
-            dataGridView1.DataSource = tablo;
-            dataGridView1.AllowUserToAddRows = false;
+            dgwVeriler.DataSource = tablo;
+            dgwVeriler.AllowUserToAddRows = false;
 
         }
 
@@ -76,14 +77,14 @@ namespace DovizKuru
 
                 tablo.Rows.Add(Isim, CurrencyName, ForexBuying, ForexSelling, BanknoteBuying, BanknotSelling, CrossRateUSD, Unit).ToString();
 
-                dataGridView1.DataSource = tablo;
+                dgwVeriler.DataSource = tablo;
             }
         }
 
         private void btn_EskiKur_Click(object sender, EventArgs e)
         {
-           
-            string eski = "https://www.tcmb.gov.tr/kurlar/" + lblYil.Text + lblAy.Text + "/" + lblGun.Text + "" + lblAy.Text + "" + lblYil.Text + ".xml";        
+
+            string eski = "https://www.tcmb.gov.tr/kurlar/" + lblYil.Text + lblAy.Text + "/" + lblGun.Text + "" + lblAy.Text + "" + lblYil.Text + ".xml";
 
             xmlDocument.Load(eski);
             KurCek();
@@ -97,13 +98,48 @@ namespace DovizKuru
 
             if (Convert.ToInt32(lblGun.Text) < 10)
             {
-                lblGun.Text = ("0"+dateTimePicker1.Value.Day.ToString());
+                lblGun.Text = ("0" + dateTimePicker1.Value.Day.ToString());
             }
             if (Convert.ToInt32(lblAy.Text) < 10)
             {
                 lblAy.Text = ("0" + dateTimePicker1.Value.Month.ToString());
             }
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SaveFileDialog dosyakaydet = new SaveFileDialog();
+                dosyakaydet.FileName = "Kurlar";
+                dosyakaydet.InitialDirectory = Environment.SpecialFolder.Desktop.ToString();
+                dosyakaydet.Filter = "Txt Dosyası|*.txt";
+                if (dosyakaydet.ShowDialog() == DialogResult.OK)
+                {
+                    TextWriter txt = new StreamWriter(dosyakaydet.FileName);
+                    foreach (DataGridViewColumn sutun in dgwVeriler.Columns)
+                    {
+                        txt.Write(sutun.HeaderText + " | ");
+                    }
+                    txt.Write("\n");
+                    foreach (DataGridViewRow satir in dgwVeriler.Rows)
+                    {
+                        foreach (DataGridViewCell hucre in satir.Cells)
+                        {
+                            txt.Write(hucre.Value.ToString() + " : ");
+                        }
+                        
+                        txt.Write("\n");
+                    }
+                    txt.Close();
+                    MessageBox.Show("Kurlar başarıyla kayıt edildi.\n" , "Başarılı!", MessageBoxButtons.OK , MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception hata)
+            {
+                MessageBox.Show(hata.Message);
+            }
         }
     }
 }

@@ -37,14 +37,15 @@
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btn_GuncelKur = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgwVeriler = new System.Windows.Forms.DataGridView();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.lblGun = new System.Windows.Forms.Label();
             this.lblAy = new System.Windows.Forms.Label();
             this.lblYil = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.gbxTarih.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgwVeriler)).BeginInit();
             this.SuspendLayout();
             // 
             // gbxTarih
@@ -55,7 +56,7 @@
             this.gbxTarih.Controls.Add(this.lblGun);
             this.gbxTarih.Controls.Add(this.label4);
             this.gbxTarih.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.gbxTarih.Location = new System.Drawing.Point(839, 325);
+            this.gbxTarih.Location = new System.Drawing.Point(695, 324);
             this.gbxTarih.Margin = new System.Windows.Forms.Padding(4);
             this.gbxTarih.Name = "gbxTarih";
             this.gbxTarih.Padding = new System.Windows.Forms.Padding(4);
@@ -71,7 +72,7 @@
             this.btn_EskiKur.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.btn_EskiKur.Image = global::DovizKuru.Properties.Resources.ok;
             this.btn_EskiKur.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_EskiKur.Location = new System.Drawing.Point(232, 23);
+            this.btn_EskiKur.Location = new System.Drawing.Point(172, 21);
             this.btn_EskiKur.Margin = new System.Windows.Forms.Padding(4);
             this.btn_EskiKur.Name = "btn_EskiKur";
             this.btn_EskiKur.Size = new System.Drawing.Size(192, 49);
@@ -114,7 +115,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(489, 80);
+            this.groupBox1.Size = new System.Drawing.Size(389, 80);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tarih Seçiniz";
@@ -126,7 +127,7 @@
             this.btn_GuncelKur.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btn_GuncelKur.Image = global::DovizKuru.Properties.Resources.ok;
             this.btn_GuncelKur.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_GuncelKur.Location = new System.Drawing.Point(532, 329);
+            this.btn_GuncelKur.Location = new System.Drawing.Point(408, 328);
             this.btn_GuncelKur.Margin = new System.Windows.Forms.Padding(4);
             this.btn_GuncelKur.Name = "btn_GuncelKur";
             this.btn_GuncelKur.Size = new System.Drawing.Size(279, 59);
@@ -136,9 +137,9 @@
             this.btn_GuncelKur.UseVisualStyleBackColor = true;
             this.btn_GuncelKur.Click += new System.EventHandler(this.btn_GuncelKur_Click);
             // 
-            // dataGridView1
+            // dgwVeriler
             // 
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgwVeriler.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
@@ -146,8 +147,8 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgwVeriler.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgwVeriler.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
@@ -155,17 +156,17 @@
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView1.Location = new System.Drawing.Point(5, 5);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1005, 306);
-            this.dataGridView1.TabIndex = 15;
+            this.dgwVeriler.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgwVeriler.Location = new System.Drawing.Point(5, 5);
+            this.dgwVeriler.Margin = new System.Windows.Forms.Padding(4);
+            this.dgwVeriler.Name = "dgwVeriler";
+            this.dgwVeriler.Size = new System.Drawing.Size(1005, 306);
+            this.dgwVeriler.TabIndex = 15;
             // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(45, 35);
+            this.dateTimePicker1.Location = new System.Drawing.Point(21, 31);
             this.dateTimePicker1.MaxDate = new System.DateTime(2020, 10, 28, 0, 0, 0, 0);
             this.dateTimePicker1.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.dateTimePicker1.Name = "dateTimePicker1";
@@ -208,13 +209,31 @@
             this.lblYil.TabIndex = 19;
             this.lblYil.Text = "...";
             // 
+            // button1
+            // 
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.Location = new System.Drawing.Point(889, 318);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(121, 39);
+            this.button1.TabIndex = 16;
+            this.button1.Text = "Kaydet";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1016, 394);
+            this.ClientSize = new System.Drawing.Size(1016, 398);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.gbxTarih);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgwVeriler);
             this.Controls.Add(this.btn_GuncelKur);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -225,7 +244,7 @@
             this.gbxTarih.ResumeLayout(false);
             this.gbxTarih.PerformLayout();
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgwVeriler)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -237,11 +256,12 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btn_GuncelKur;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgwVeriler;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label lblGun;
         private System.Windows.Forms.Label lblAy;
         private System.Windows.Forms.Label lblYil;
+        private System.Windows.Forms.Button button1;
     }
 }
 
