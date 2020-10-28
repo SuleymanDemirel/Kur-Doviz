@@ -7,3 +7,13 @@ c:\users\süleyman\documents\visual studio 2015\Projects\DovizKuru\DovizKuru\obj
 c:\users\süleyman\documents\visual studio 2015\Projects\DovizKuru\DovizKuru\obj\Debug\DovizKuru.csproj.GenerateResource.Cache
 c:\users\süleyman\documents\visual studio 2015\Projects\DovizKuru\DovizKuru\obj\Debug\DovizKuru.exe
 c:\users\süleyman\documents\visual studio 2015\Projects\DovizKuru\DovizKuru\obj\Debug\DovizKuru.pdb
+C:\Users\suley\Desktop\Kur-Doviz\DovizKuru\bin\Debug\DovizKuru.exe.config
+C:\Users\suley\Desktop\Kur-Doviz\DovizKuru\bin\Debug\DovizKuru.exe
+C:\Users\suley\Desktop\Kur-Doviz\DovizKuru\bin\Debug\DovizKuru.pdb
+C:\Users\suley\Desktop\Kur-Doviz\DovizKuru\obj\Debug\DovizKuru.csprojAssemblyReference.cache
+C:\Users\suley\Desktop\Kur-Doviz\DovizKuru\obj\Debug\DovizKuru.Form1.resources
+C:\Users\suley\Desktop\Kur-Doviz\DovizKuru\obj\Debug\DovizKuru.Properties.Resources.resources
+C:\Users\suley\Desktop\Kur-Doviz\DovizKuru\obj\Debug\DovizKuru.csproj.GenerateResource.cache
+C:\Users\suley\Desktop\Kur-Doviz\DovizKuru\obj\Debug\DovizKuru.csproj.CoreCompileInputs.cache
+C:\Users\suley\Desktop\Kur-Doviz\DovizKuru\obj\Debug\DovizKuru.exe
+C:\Users\suley\Desktop\Kur-Doviz\DovizKuru\obj\Debug\DovizKuru.pdb

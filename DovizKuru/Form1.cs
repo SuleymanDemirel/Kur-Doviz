@@ -14,7 +14,6 @@ namespace DovizKuru
     public partial class Form1 : Form
     {
 
-
         public Form1()
         {
             InitializeComponent();
@@ -25,7 +24,7 @@ namespace DovizKuru
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            Today();
 
             tablo.Columns.Add("Isim", typeof(string));
             tablo.Columns.Add("CurrencyName", typeof(string));
@@ -40,25 +39,28 @@ namespace DovizKuru
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btn_GuncelKur_Click(object sender, EventArgs e)
         {
             string today = "https://www.tcmb.gov.tr/kurlar/today.xml";
-            
+
             xmlDocument.Load(today);
 
             KurCek();
+            Today();
+        }
+
+        private void Today()
+        {
+            DateTime bugun = DateTime.Now;
+            lblGun.Text = bugun.Date.Day.ToString();
+            lblAy.Text = bugun.Date.Month.ToString();
+            lblYil.Text = bugun.Date.Year.ToString();
         }
 
         private void KurCek()
         {
             tablo.Clear();
             DateTime tarih = Convert.ToDateTime(xmlDocument.SelectSingleNode("//Tarih_Date").Attributes["Tarih"].Value);
-            label1.Text = (tarih.ToShortDateString());
 
             for (int i = 0; i <= 18; i++)
             {
@@ -72,8 +74,6 @@ namespace DovizKuru
                 string CrossRateUSD = xmlDocument.SelectSingleNode("//Currency[@CrossOrder=" + i + "]/CrossRateUSD").InnerXml;
                 string Unit = xmlDocument.SelectSingleNode("//Currency[@CrossOrder=" + i + "]/Unit").InnerXml;
 
-
-                // listBox1.Items.Add(BanknotSelling +" "+ BanknoteBuying).ToString();
                 tablo.Rows.Add(Isim, CurrencyName, ForexBuying, ForexSelling, BanknoteBuying, BanknotSelling, CrossRateUSD, Unit).ToString();
 
                 dataGridView1.DataSource = tablo;
@@ -82,12 +82,28 @@ namespace DovizKuru
 
         private void btn_EskiKur_Click(object sender, EventArgs e)
         {
-            string eski = "https://www.tcmb.gov.tr/kurlar/" + textBox_yıl.Text + textBox_ay.Text + "/" + textBox_gun.Text + "" + textBox_ay.Text + "" + textBox_yıl.Text + ".xml";
-
+           
+            string eski = "https://www.tcmb.gov.tr/kurlar/" + lblYil.Text + lblAy.Text + "/" + lblGun.Text + "" + lblAy.Text + "" + lblYil.Text + ".xml";        
 
             xmlDocument.Load(eski);
-
             KurCek();
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            lblGun.Text = dateTimePicker1.Value.Day.ToString();
+            lblAy.Text = dateTimePicker1.Value.Month.ToString();
+            lblYil.Text = dateTimePicker1.Value.Year.ToString();
+
+            if (Convert.ToInt32(lblGun.Text) < 10)
+            {
+                lblGun.Text = ("0"+dateTimePicker1.Value.Day.ToString());
+            }
+            if (Convert.ToInt32(lblAy.Text) < 10)
+            {
+                lblAy.Text = ("0" + dateTimePicker1.Value.Month.ToString());
+            }
+
         }
     }
 }
