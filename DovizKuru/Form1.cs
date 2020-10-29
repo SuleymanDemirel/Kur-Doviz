@@ -25,16 +25,13 @@ namespace DovizKuru
         DateTime bugun = DateTime.Now;
         private void Form1_Load(object sender, EventArgs e)
         {
-         
+            groupBox3.Enabled = false;
             Today();
             tabloOlustur();
             
             dgwVeriler.DataSource = tablo;
             dgwVeriler.AllowUserToAddRows = false;
 
-            tablo.Columns.Add(bugun.Date.ToShortDateString(), typeof(string));
-            dgwVerilerAralik.DataSource = tablo;
-            dgwVerilerAralik.AllowUserToAddRows = false;
 
         }
 
@@ -48,10 +45,12 @@ namespace DovizKuru
             tablo.Columns.Add("BanknoteSelling", typeof(string));
             tablo.Columns.Add("CrossRateUsd", typeof(string));
             tablo.Columns.Add("Unit", typeof(string));
+            
         }
 
         private void btn_GuncelKur_Click(object sender, EventArgs e)
         {
+            tablo.Clear();
             string today = "https://www.tcmb.gov.tr/kurlar/today.xml";
 
             xmlDocument.Load(today);
@@ -62,7 +61,7 @@ namespace DovizKuru
 
         private void Today()
         {
-           
+            lblToday.Text = bugun.ToLongDateString();
             lblGun.Text = bugun.Date.Day.ToString();
             lblAy.Text = bugun.Date.Month.ToString();
             lblYil.Text = bugun.Date.Year.ToString();
@@ -70,7 +69,7 @@ namespace DovizKuru
 
         private void KurCek()
         {
-            tablo.Clear();
+            //tablo.Clear();
             DateTime tarih = Convert.ToDateTime(xmlDocument.SelectSingleNode("//Tarih_Date").Attributes["Tarih"].Value);
 
             for (int i = 0; i <= 18; i++)
@@ -84,25 +83,66 @@ namespace DovizKuru
                 string BanknotSelling = xmlDocument.SelectSingleNode("//Currency[@CrossOrder=" + i + "]/BanknoteSelling").InnerXml;
                 string CrossRateUSD = xmlDocument.SelectSingleNode("//Currency[@CrossOrder=" + i + "]/CrossRateUSD").InnerXml;
                 string Unit = xmlDocument.SelectSingleNode("//Currency[@CrossOrder=" + i + "]/Unit").InnerXml;
-
+                
                 tablo.Rows.Add(Isim, CurrencyName, ForexBuying, ForexSelling, BanknoteBuying, BanknotSelling, CrossRateUSD, Unit).ToString();
-
-                dgwVeriler.DataSource = tablo;
+                
+                
             }
-        }
+           
+            dgwVeriler.DataSource = tablo;
 
+        }
+        
         private void btn_EskiKur_Click(object sender, EventArgs e)
         {
+            tablo.Clear();
+            if (cbxAralik.Checked == true)
+            {
+              
+                int sayi1=1,sayi2, sonuc;
+                while (Convert.ToInt32(lblGun.Text) <= Convert.ToInt32(lblBitisGun.Text))
+                {
 
-            string eski = "https://www.tcmb.gov.tr/kurlar/" + lblYil.Text + lblAy.Text + "/" + lblGun.Text + "" + lblAy.Text + "" + lblYil.Text + ".xml";
+                    string eski = "https://www.tcmb.gov.tr/kurlar/" + lblYil.Text + lblAy.Text + "/" + lblGun.Text + "" + lblAy.Text + "" + lblYil.Text + ".xml";
 
-            xmlDocument.Load(eski);
-            KurCek();
+                    xmlDocument.Load(eski);
+
+                    KurCek();
+                    tablo.Rows.Add(lblGun.Text + "/" + lblAy.Text + "/" + lblYil.Text);
+                    
+                    
+                    sayi2 = Convert.ToInt32(lblGun.Text);
+                    sonuc = sayi1 + sayi2;
+                    lblGun.Text = sonuc.ToString();
+
+
+                    if (Convert.ToInt32(lblGun.Text) < 10)
+                    {
+                        lblGun.Text = ("0" + lblGun.Text.ToString());
+
+                    }
+                    else
+                    {
+                        lblGun.Text = lblGun.Text.ToString();
+                    }
+
+                }
+               
+            }
+            else
+            {
+                string eski = "https://www.tcmb.gov.tr/kurlar/" + lblYil.Text + lblAy.Text + "/" + lblGun.Text + "" + lblAy.Text + "" + lblYil.Text + ".xml";
+
+                xmlDocument.Load(eski);
+                KurCek();
+
+            }
+           
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
-            lblGun.Text = dateTimePicker1.Value.Day.ToString();
+            Convert.ToInt32(lblGun.Text = dateTimePicker1.Value.Day.ToString());
             lblAy.Text = dateTimePicker1.Value.Month.ToString();
             lblYil.Text = dateTimePicker1.Value.Year.ToString();
 
@@ -151,73 +191,7 @@ namespace DovizKuru
                 MessageBox.Show(hata.Message);
             }
         }
-        int sayi = 1;
-        private void button2_Click(object sender, EventArgs e)
-        {
-           
-            var aralik = Convert.ToInt32(lblBitisGun.Text) - Convert.ToInt32(lblBaslangicGun.Text);
-            lblToplam.Text = lblBaslangicGun.Text;
-            for (int i = 0; i <= aralik; i++)
-            {
-                string eski = "https://www.tcmb.gov.tr/kurlar/" + lblBaslangicYil.Text + lblBaslangicAy.Text + "/" + lblToplam.Text + "" + lblBaslangicAy.Text + "" + lblBaslangicYil.Text + ".xml";
-
-                xmlDocument.Load(eski);
-
-                KurCek2();
-
-                int toplam = Convert.ToInt32(lblBaslangicGun.Text) + sayi;
-                if (Convert.ToInt32(lblToplam.Text) < 10)
-                {
-                    lblToplam.Text = ("0" + toplam.ToString());
-
-                }
-                else
-                {
-                    lblToplam.Text = toplam.ToString();
-                }
-
-            }
-
-        }
-
-        private void KurCek2()
-        {
-            
-            DateTime tarih = Convert.ToDateTime(xmlDocument.SelectSingleNode("//Tarih_Date").Attributes["Tarih"].Value);
-
-            for (int i = 0; i <= 18; i++)
-            {
-
-                string Isim = xmlDocument.SelectSingleNode("//Currency[@CrossOrder=" + i + "]/Isim").InnerXml;
-                string CurrencyName = xmlDocument.SelectSingleNode("//Currency[@CrossOrder=" + i + "]/CurrencyName").InnerXml;
-                string ForexBuying = xmlDocument.SelectSingleNode("//Currency[@CrossOrder=" + i + "]/ForexBuying").InnerXml;
-                string ForexSelling = xmlDocument.SelectSingleNode("//Currency[@CrossOrder=" + i + "]/ForexSelling").InnerXml;
-                string BanknoteBuying = xmlDocument.SelectSingleNode("//Currency[@CrossOrder=" + i + "]/BanknoteBuying").InnerXml;
-                string BanknotSelling = xmlDocument.SelectSingleNode("//Currency[@CrossOrder=" + i + "]/BanknoteSelling").InnerXml;
-                string CrossRateUSD = xmlDocument.SelectSingleNode("//Currency[@CrossOrder=" + i + "]/CrossRateUSD").InnerXml;
-                string Unit = xmlDocument.SelectSingleNode("//Currency[@CrossOrder=" + i + "]/Unit").InnerXml;
-
-                tablo.Rows.Add(Isim, CurrencyName, ForexBuying, ForexSelling, BanknoteBuying, BanknotSelling, CrossRateUSD, Unit).ToString();
-
-                dgwVerilerAralik.DataSource = tablo;
-            }
-        }
-
-        private void dateBaslangic_ValueChanged(object sender, EventArgs e)
-        {
-            Convert.ToInt32(lblBaslangicGun.Text = dateBaslangic.Value.Day.ToString());
-            lblBaslangicAy.Text = dateBaslangic.Value.Month.ToString();
-            lblBaslangicYil.Text = dateBaslangic.Value.Year.ToString();
-
-            if (Convert.ToInt32(lblBaslangicGun.Text) < 10)
-            {
-                lblBaslangicGun.Text = ("0" + dateBaslangic.Value.Day.ToString());
-            }
-            if (Convert.ToInt32(lblBaslangicAy.Text) < 10)
-            {
-                lblBaslangicAy.Text = ("0" + dateBaslangic.Value.Month.ToString());
-            }
-        }
+       
 
         private void dateBitis_ValueChanged(object sender, EventArgs e)
         {
@@ -234,7 +208,19 @@ namespace DovizKuru
                 lblBitisAy.Text = ("0" + dateBitis.Value.Month.ToString());
             }
         }
-        
+
+        private void cbxAralik_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbxAralik.Checked == true)
+            {
+                groupBox3.Enabled = true;
+            }
+            else
+            {
+                groupBox3.Enabled = false;
+            }
+        }
+
     }
 }
 
